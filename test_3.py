@@ -10,19 +10,36 @@ import numpy as np
 # blue_mask = cv2.inRange(hsv_frame, low_blue, high_blue)
 # blue = cv2.bitwise_and(frame, frame, mask=blue_mask)
 
-# frame = cv2.imread('images/polka_5.jpg')
 frame = cv2.imread('images/orig_1.jpg')
+# frame = cv2.imread('images/orig.jpg')
 frame = cv2.resize(frame, (400, 500))
 blur = cv2.blur(frame, (5, 5))
 hsv_frame = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
 
 """Red color"""
+# color = {
+#     1:  [[], []],
+#     2:  [[0, 68, 0], [16, 255, 255]],
+#     10: [[16, 194, 0], [28, 255, 255]],
+#     14: [[24, 170, 0], [60,194,200]],
+#     15: [[39,57,0], [60,194,200]],
+#
+# }
+color = {
+    1: [[], []],
+    2: [[0, 68, 0], [16, 255, 255]],
+    10: [[16, 194, 0], [28, 255, 255]],
+    14: [[24, 170, 0], [60, 194, 200]],
+    15: [[39, 57, 0], [60, 194, 200]],
+
+}
+print(color[2][0])
 # low_red = np.array([0, 50, 120])
 # high_red = np.array([10, 255, 255])
-low_red = np.array([103, 86, 65])
-high_red = np.array([145, 133, 128])
-red_mask = cv2.inRange(hsv_frame, low_red, high_red)
-red = cv2.bitwise_and(frame, frame, mask=red_mask)
+# # low_red = np.array([103, 86, 65])
+# # high_red = np.array([145, 133, 128])
+# red_mask = cv2.inRange(hsv_frame, low_red, high_red)
+# red = cv2.bitwise_and(frame, frame, mask=red_mask)
 
 
 """Yellow Color"""
@@ -38,8 +55,10 @@ blue_mask = cv2.inRange(hsv_frame, low_blue, high_blue)
 blue = cv2.bitwise_and(frame, frame, mask=blue_mask)
     # #
 """Green color"""
-low_green = np.array([47, 35, 0])
-high_green = np.array([62, 247, 255])
+# low_green = np.array([47, 35, 0])
+# high_green = np.array([62, 247, 255])
+low_green = np.array(color[15][0])
+high_green = np.array(color[15][1])
 green_mask = cv2.inRange(hsv_frame, low_green, high_green)
 green = cv2.bitwise_and(frame, frame, mask=green_mask)
 
@@ -60,7 +79,7 @@ cv2.drawContours(green, contours_2, -1, (0, 0, 0), 3)
 # l = [cv2.contourArea(cnt) for cnt in contours if(cv2.contourArea(cnt))>300]
 # print('Blue--->',len(l))
 
-l_2 = [cv2.contourArea(cnt) for cnt in contours_2 if(cv2.contourArea(cnt))>300]
+l_2 = [cv2.contourArea(cnt) for cnt in contours_2 if(cv2.contourArea(cnt))>100]
 print("Green--->", len(l_2))
 actual = 13-len(l_2)
 print("Actual Length---->", (actual-1)*2.5,"cm")

@@ -38,8 +38,8 @@ def stackImages(scale, imgArray):
         ver = hor
     return ver
 
-
-path = cv2.namedWindow("TrackBars")
+path = "images/polka_dots.jpg"
+cv2.namedWindow("TrackBars")
 cv2.resizeWindow("TrackBars", 640, 140)
 cv2.createTrackbar("Hue Min", "TrackBars", 0, 179, empty)
 cv2.createTrackbar("Hue Max", "TrackBars", 19, 179, empty)
